@@ -1,0 +1,60 @@
+version: '3'
+
+services:
+  api:
+    depends_on: 
+      - db
+    image: strapi/strapi
+    container_name: strapi-container
+    env_file: .env
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      DATABASE_CLIENT: ${DATABASE_CLIENT}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+    volumes:
+      - ./app:/srv/app
+    ports:
+      - '1337:1337'
+    networks:
+      - backend-network
+    #command: 'strapi start'
+    command: 'strapi develop'
+  
+  pgAdmin:
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    container_name: pgadmin-container
+    env_file: .env
+    environment:
+        PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+        PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+        - "16543:80"
+    depends_on:
+        - db
+    networks:
+      - backend-network
+    
+  db:
+    image: postgres
+    restart: always
+    container_name: postgres-container
+    env_file: .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    ports:
+      - '15432:5432'
+    networks:
+      - backend-network
+
+networks: 
+  backend-network:
+    driver: bridge
