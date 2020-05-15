@@ -61,3 +61,7 @@ Na [Issue 1](https://github.com/ColquePaxi/Articles_API_Node/issues/1) você enc
 ## Geral 
 ---
 Esse treinamento é bem básico e de forma alguma conclui que é a melhor metodologia e/ou o melhor framework para a construção de API com NodeJS. Use-o para tirar suas próprias conclusões. 
+
+## Observações
+---
+Feature/rate-limit: as configurações foram todas feitas no Painel Admin.
