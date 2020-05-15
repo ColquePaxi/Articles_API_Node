@@ -19,8 +19,9 @@
       "required": true
     },
     "author": {
-      "via": "articles",
-      "model": "author"
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "articles"
     }
   }
 }
