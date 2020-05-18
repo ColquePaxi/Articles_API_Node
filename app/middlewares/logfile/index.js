@@ -12,10 +12,10 @@ module.exports = strapi => {
         initialize() {
             // Inicializa o hook: pega o conteúdo que foi definido lá no request.json    
             const {
-		level,
-		exposeInContext,
-		requests,
-	    } = strapi.config.middleware.settings.logger;
+                level,
+                exposeInContext,
+                requests,
+            } = strapi.config.middleware.settings.logger;
 
             let logFile = null;
             let logStream = null;
@@ -40,9 +40,9 @@ module.exports = strapi => {
 
             // Pega o nível de log que veio lá do request.json
             if (level) {
-		strapi.log.level = strapi.config.middleware.settings.logger.level;
-		logStream.write('Log Level => ' + strapi.log.level + '\n');
-	    }
+                strapi.log.level = strapi.config.middleware.settings.logger.level;
+                logStream.write('Log Level => ' + strapi.log.level + '\n');
+            }
 
             // Pega o parâmetro de contexto que veio lá do request.json
             if (exposeInContext) {
