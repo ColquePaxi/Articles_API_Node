@@ -18,6 +18,14 @@
     },
     {
       "method": "GET",
+      "path": "/articles/basePath",
+      "handler": "article.basePath",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
       "path": "/articles/:id",
       "handler": "article.findOne",
       "config": {
@@ -44,6 +52,14 @@
       "method": "DELETE",
       "path": "/articles/:id",
       "handler": "article.delete",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/articles/basePath",
+      "handler": "article.basePath",
       "config": {
         "policies": []
       }
