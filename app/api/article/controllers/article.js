@@ -39,8 +39,6 @@ module.exports = {
 
   async create(ctx) {
  
-    console.log('ctx.request.body.author: ' + ctx.request.body.author);
-    console.log('ctx.state.user.id: ' + ctx.state.user.id);
     console.log(ctx.is('multipart'));
 
     let entity;
@@ -100,12 +98,16 @@ module.exports = {
 
     let entity;
 
+    console.log('Role name = ' + ctx.state.user.role.name);
+    console.log('ctx.state.user.id: ' + ctx.state.user.id);
+    //console.log('ctx.request.body.author: ' + ctx.request.body.author);
+
     const [article] = await strapi.services.article.find({
       id: ctx.params.id,
       'author.id': ctx.state.user.id,
     });
 
-    if (!article) {
+    if (!article && ctx.state.user.role.name != 'Admin') {
       return ctx.unauthorized(`Você não pode deletar esse registro`);
     }
 
