@@ -16,6 +16,9 @@
     "exposeInContext": true,
     "requests": true
   },
+  "logfile": {
+    "enabled": true
+  },
   "parser": {
     "enabled": true,
     "multipart": true
